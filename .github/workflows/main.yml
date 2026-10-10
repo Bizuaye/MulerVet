@@ -26,16 +26,17 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
 
-      # IMPORTANT: You need to have a framework like Capacitor or Cordova 
-      # in your project for this to build an APK. 
-      # If you just have the HTML file, this step will fail.
-      # This assumes you are using Capacitor (common for HTML to APK).
-      
+      # IMPORTANT: This step requires a package.json file in your repository.
+      # If you only have index.html, this will fail.
       - name: Install dependencies
-        run: |
-          npm install
-          npx cap sync
+        run: npm install
+
+      # This step syncs your web code to the Android project (Capacitor)
+      - name: Sync Capacitor
+        run: npx cap sync
 
       - name: Build APK
         run: |
