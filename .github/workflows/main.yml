@@ -1,36 +1,50 @@
-
-name: Mulervet Main Workflow
+name: Build Mulervet APK
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  check-project:
-    name: Check Mulervet Project
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify project files
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # IMPORTANT: You need to have a framework like Capacitor or Cordova 
+      # in your project for this to build an APK. 
+      # If you just have the HTML file, this step will fail.
+      # This assumes you are using Capacitor (common for HTML to APK).
+      
+      - name: Install dependencies
         run: |
-          echo "Checking Mulervet project files..."
+          npm install
+          npx cap sync
 
-          if [ -f index.html ]; then
-            echo "SUCCESS: index.html found."
-          else
-            echo "ERROR: index.html not found."
-            exit 1
-          fi
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
-          echo "Mulervet project check completed."
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mulervet-Debug-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
