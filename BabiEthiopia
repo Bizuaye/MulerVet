@@ -1,644 +1,490 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#176b45">
-<title>Mulervet | Veterinary Wholesale</title>
-
-<style>
-:root {
-  --green:#176b45;
-  --light:#eaf5ee;
-  --bg:#f5f7f6;
-  --red:#c0392b;
-  --orange:#b66b00;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:#202b25;
-}
-header {
-  background:var(--green);
-  color:white;
-  padding:18px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-header h2 { margin:0 0 5px; }
-header small { color:#e0f2e7; }
-button, input, select, textarea {
-  font:inherit;
-}
-button {
-  border:0;
-  border-radius:8px;
-  padding:10px 13px;
-  cursor:pointer;
-}
-.primary { background:var(--green); color:white; }
-.secondary { background:#e5eee8; color:var(--green); }
-.danger { background:#fae7e5; color:var(--red); }
-header button { background:white; color:var(--green); }
-nav {
-  display:flex;
-  overflow-x:auto;
-  gap:7px;
-  padding:10px;
-  background:white;
-  border-bottom:1px solid #ddd;
-}
-nav button { white-space:nowrap; background:#eee; }
-nav button.active { background:var(--green); color:white; }
-main { padding:14px; max-width:1000px; margin:auto; }
-h3 { margin-top:8px; }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-}
-.card {
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  box-shadow:0 1px 5px #0000000b;
-  margin-bottom:12px;
-  min-width:0;
-}
-.metric { font-size:22px; font-weight:bold; margin-top:8px; }
-.muted { color:#68756d; font-size:13px; }
-form { display:grid; gap:11px; }
-label { display:grid; gap:5px; font-size:14px; }
-input,select,textarea {
-  width:100%;
-  min-width:0;
-  border:1px solid #ccd5cf;
-  border-radius:8px;
-  padding:11px;
-  background:white;
-  color:#202b25;
-}
-.row { display:flex; gap:8px; flex-wrap:wrap; }
-.row > * { flex:1; }
-.tablewrap { overflow-x:auto; }
-table {
-  border-collapse:collapse;
-  width:100%;
-  background:white;
-  font-size:13px;
-}
-th,td {
-  text-align:left;
-  padding:10px;
-  border-bottom:1px solid #e5e9e6;
-  white-space:nowrap;
-}
-th { background:#edf4ef; }
-.alert {
-  border-left:4px solid var(--orange);
-  padding:10px;
-  background:#fff5df;
-  border-radius:5px;
-  margin:8px 0;
-  font-size:14px;
-}
-.bad { color:var(--red); font-weight:bold; }
-.good { color:var(--green); }
-.hidden { display:none!important; }
-footer { text-align:center; padding:20px; color:#68756d; font-size:12px; }
-@media(min-width:650px) {
-  .grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#116149">
+  <title>Mulervet | Veterinary Wholesale</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f7f5;
+      color: #20352c;
+    }
+    header {
+      background: #116149;
+      color: white;
+      padding: 24px 18px;
+    }
+    header h1 { margin: 0 0 8px; font-size: 28px; }
+    header p { margin: 0; color: #d8eee5; }
+    nav {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      background: white;
+      overflow-x: auto;
+    }
+    nav button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      background: #e7f2ed;
+      color: #116149;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    nav button.active { background: #116149; color: white; }
+    main { max-width: 1000px; margin: auto; padding: 18px; }
+    .panel {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px #153b2910;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      padding: 18px;
+      background: #e7f2ed;
+      border-radius: 10px;
+    }
+    .stat strong { display: block; font-size: 25px; margin-top: 8px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0 12px;
+      border: 1px solid #cbd8d1;
+      border-radius: 8px;
+      font: inherit;
+    }
+    label { font-weight: bold; font-size: 14px; }
+    .btn {
+      border: 0;
+      background: #116149;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn.secondary { background: #e7f2ed; color: #116149; }
+    .btn.danger { background: #a93232; }
+    .product {
+      border: 1px solid #e0e9e4;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    .product h3 { margin: 0 0 8px; }
+    .muted { color: #66766d; font-size: 13px; }
+    .price { color: #116149; font-weight: bold; }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hidden { display: none; }
+    .notice {
+      background: #fff5d9;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    footer { text-align: center; padding: 22px; color: #66766d; }
+    @media (min-width: 650px) {
+      .stats { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
 </head>
-
 <body>
+
 <header>
-  <div>
-    <h2>🐄 Mulervet</h2>
-    <small id="subtitle">Veterinary Wholesale Manager</small>
-  </div>
-  <button onclick="toggleLanguage()" id="langBtn">አማርኛ</button>
+  <h1>🐄 Mulervet</h1>
+  <p>Veterinary Medicine Wholesale Management</p>
+  <p style="margin-top:10px;font-size:13px">Your partner in animal health</p>
 </header>
 
-<nav id="nav"></nav>
-<main id="app"></main>
-<footer>
-  Mulervet • Veterinary Drug Wholesale Management<br>
-  Local prototype — keep independent backups of important records.
-</footer>
+<nav>
+  <button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
+  <button onclick="showPage('inventory',this)">Inventory</button>
+  <button onclick="showPage('orders',this)">Orders</button>
+  <button onclick="showPage('business',this)">Business Details</button>
+</nav>
+
+<main>
+  <section id="dashboard">
+    <div class="panel">
+      <h2>Welcome to Mulervet</h2>
+      <p>Manage veterinary products, stock and wholesale orders from one place.</p>
+      <div class="stats">
+        <div class="stat">Products<strong id="totalProducts">0</strong></div>
+        <div class="stat">Units in Stock<strong id="totalStock">0</strong></div>
+        <div class="stat">Orders<strong id="totalOrders">0</strong></div>
+        <div class="stat">Low Stock<strong id="lowStock">0</strong></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Quick Actions</h2>
+      <button class="btn" onclick="showPage('inventory')">Manage Inventory</button>
+      <button class="btn secondary" onclick="showPage('orders')">View Orders</button>
+    </div>
+    <div class="notice">
+      Demo version: sample products and prices are for testing only.
+      Replace them with verified supplier information before business use.
+    </div>
+  </section>
+
+  <section id="inventory" class="hidden">
+    <div class="panel">
+      <h2>Add Veterinary Product</h2>
+      <form id="productForm">
+        <label for="productName">Product name</label>
+        <input id="productName" required placeholder="Product name">
+
+        <label for="category">Category</label>
+        <select id="category">
+          <option>Veterinary medicine</option>
+          <option>Vaccines</option>
+          <option>Animal supplements</option>
+          <option>Animal health equipment</option>
+          <option>Other</option>
+        </select>
+
+        <label for="unit">Unit / package</label>
+        <input id="unit" required placeholder="e.g. bottle, box, pack">
+
+        <label for="quantity">Quantity in stock</label>
+        <input id="quantity" type="number" min="0" step="1" required>
+
+        <label for="price">Wholesale price (ETB)</label>
+        <input id="price" type="number" min="0" step="0.01" required>
+
+        <label for="expiry">Expiry date (if applicable)</label>
+        <input id="expiry" type="date">
+
+        <button class="btn" type="submit">Save Product</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Product Inventory</h2>
+      <input id="search" placeholder="Search products..." oninput="renderProducts()">
+      <div id="productList"></div>
+    </div>
+  </section>
+
+  <section id="orders" class="hidden">
+    <div class="panel">
+      <h2>Create Wholesale Order</h2>
+      <form id="orderForm">
+        <label for="customer">Customer / business name</label>
+        <input id="customer" required placeholder="Customer name">
+
+        <label for="contact">Customer phone</label>
+        <input id="contact" required type="tel" placeholder="Phone number">
+
+        <label for="orderProduct">Select product</label>
+        <select id="orderProduct" required></select>
+
+        <label for="orderQuantity">Quantity</label>
+        <input id="orderQuantity" type="number" min="1" step="1" required>
+
+        <label for="orderNote">Notes</label>
+        <textarea id="orderNote" rows="2" placeholder="Optional order details"></textarea>
+
+        <button class="btn" type="submit">Save Order</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Order History</h2>
+      <div id="orderList"></div>
+    </div>
+  </section>
+
+  <section id="business" class="hidden">
+    <div class="panel">
+      <h2>Business Details</h2>
+      <form id="businessForm">
+        <label for="businessName">Business name</label>
+        <input id="businessName" value="Mulervet">
+
+        <label for="businessPhone">Business phone</label>
+        <input id="businessPhone" type="tel" placeholder="Enter business phone">
+
+        <label for="businessAddress">Business address</label>
+        <input id="businessAddress" placeholder="Addis Ababa, Ethiopia">
+
+        <label for="businessEmail">Business email</label>
+        <input id="businessEmail" type="email" placeholder="Email address">
+
+        <button class="btn" type="submit">Save Details</button>
+      </form>
+      <p class="muted">Saved on this device in this demo version.</p>
+    </div>
+  </section>
+</main>
+
+<footer>Mulervet Veterinary Wholesale · Ethiopia</footer>
 
 <script>
-const $ = id => document.getElementById(id);
-const money = n => Number(n || 0).toLocaleString(
-  "en-ET",{maximumFractionDigits:2}
-) + " ETB";
-
-const translations = {
-  en:{
-    dashboard:"Dashboard",stock:"Drug Inventory",sales:"Sales",
-    purchases:"Purchases",customers:"Customers",reports:"Reports",
-    totalStock:"Stock purchase value",todaySales:"Today's sales",
-    batches:"Stock batches",expiry:"Expired / near expiry",
-    low:"Low stock",addDrug:"Add stock batch",drug:"Drug name",
-    type:"Drug type",batch:"Batch number",expiryDate:"Expiry date",
-    quantity:"Quantity",cost:"Unit purchase price",price:"Unit selling price",
-    supplier:"Supplier",save:"Save",cancel:"Cancel",search:"Search medicines",
-    sell:"Record sale",customer:"Customer",payment:"Payment received",
-    cash:"Cash",credit:"Credit",product:"Product / batch",
-    amount:"Quantity to sell",total:"Total",addCustomer:"Add customer",
-    phone:"Phone",name:"Name",address:"Address",balance:"Customer debt",
-    addPurchase:"Record purchase",expense:"Expenses",addExpense:"Add expense",
-    description:"Description",date:"Date",profit:"Estimated gross profit",
-    sold:"Sales history",inventory:"Current inventory",noData:"No records yet.",
-    expired:"EXPIRED",near:"NEAR EXPIRY",ok:"OK",delete:"Delete",
-    confirmDelete:"Delete this record?",dashboardTitle:"Business overview",
-    category:"Category",other:"Other",unit:"Unit",medicine:"Medicine",
-    injection:"Injection",tablet:"Tablet",powder:"Powder",liquid:"Liquid",
-    vaccine:"Vaccine",antibiotic:"Antibiotic",feed:"Feed supplement",
-    supplierName:"Supplier name",paid:"Paid",unpaid:"Unpaid",
-    expensesTotal:"Total recorded expenses",totalPurchases:"Total purchases",
-    revenue:"Recorded sales revenue",net:"Estimated profit after expenses",
-    all:"All",noStock:"No eligible stock available for sale.",
-    saved:"Saved successfully.",badQty:"Insufficient stock or invalid quantity.",
-    expiredBlock:"This batch is expired and cannot be sold.",
-    stockWarning:"Stock and expiry alerts",export:"Export backup",
-    restore:"Import backup",restoreHelp:"Import a previously exported JSON backup.",
-    restoreConfirm:"Replace all current data with this backup?",
-    settings:"Data & Backup",costNote:"Profit is estimated from recorded unit costs.",
-    supplierList:"Suppliers",addSupplier:"Add supplier",
-    employeeNote:"Employee accounts and cloud sync are not yet implemented.",
-    deleteBatch:"Delete batch"
-  },
-  am:{
-    dashboard:"ዳሽቦርድ",stock:"የመድኃኒት ክምችት",sales:"ሽያጭ",
-    purchases:"ግዢዎች",customers:"ደንበኞች",reports:"ሪፖርቶች",
-    totalStock:"የክምችት የግዢ ዋጋ",todaySales:"የዛሬ ሽያጭ",
-    batches:"የክምችት ባች",expiry:"ያለፈበት / በቅርቡ የሚያልቅ",
-    low:"ዝቅተኛ ክምችት",addDrug:"አዲስ ክምችት ጨምር",
-    drug:"የመድኃኒት ስም",type:"የመድኃኒት ዓይነት",
-    batch:"የባች ቁጥር",expiryDate:"የማለቂያ ቀን",
-    quantity:"ብዛት",cost:"የአንዱ ግዢ ዋጋ",
-    price:"የአንዱ ሽያጭ ዋጋ",supplier:"አቅራቢ",
-    save:"አስቀምጥ",cancel:"ሰርዝ",search:"መድኃኒት ፈልግ",
-    sell:"ሽያጭ መዝግብ",customer:"ደንበኛ",payment:"የተቀበልነው ክፍያ",
-    cash:"በጥሬ ገንዘብ",credit:"በዱቤ",product:"ምርት / ባች",
-    amount:"የሚሸጥ ብዛት",total:"ድምር",addCustomer:"ደንበኛ ጨምር",
-    phone:"ስልክ",name:"ስም",address:"አድራሻ",balance:"የደንበኛ ዕዳ",
-    addPurchase:"ግዢ መዝግብ",expense:"ወጪዎች",addExpense:"ወጪ ጨምር",
-    description:"መግለጫ",date:"ቀን",profit:"ግምታዊ ጠቅላላ ትርፍ",
-    sold:"የሽያጭ ታሪክ",inventory:"የአሁኑ ክምችት",
-    noData:"ምንም መዝገብ የለም።",expired:"ጊዜው አልፏል",
-    near:"ሊያልቅ ተቃርቧል",ok:"ጥሩ",delete:"ሰርዝ",
-    confirmDelete:"ይህን መዝገብ ይሰረዝ?",
-    dashboardTitle:"የንግድ ማጠቃለያ",
-    category:"ምድብ",other:"ሌላ",unit:"ክፍል",medicine:"መድኃኒት",
-    injection:"መርፌ",tablet:"ታብሌት",powder:"ዱቄት",liquid:"ፈሳሽ",
-    vaccine:"ክትባት",antibiotic:"አንቲባዮቲክ",feed:"የመኖ ተጨማሪ",
-    supplierName:"የአቅራቢ ስም",paid:"ተከፍሏል",unpaid:"አልተከፈለም",
-    expensesTotal:"ጠቅላላ ወጪ",totalPurchases:"ጠቅላላ ግዢ",
-    revenue:"የተመዘገበ የሽያጭ ገቢ",
-    net:"ከወጪ በኋላ የሚገመት ትርፍ",
-    all:"ሁሉም",noStock:"ለሽያጭ የሚበቃ ክምችት የለም።",
-    expiredBlock:"ጊዜው ያለፈበት ባች መሸጥ አይቻልም።",
-    saved:"ተቀምጧል።",badQty:"በቂ ክምችት የለም ወይም ብዛቱ ልክ አይደለም።",
-    stockWarning:"የክምችትና የማለቂያ ማስጠንቀቂያዎች",
-    export:"ባክአፕ አውርድ",restore:"ባክአፕ አስገባ",
-    restoreHelp:"ቀድሞ የወጣ JSON ባክአፕ አስገባ።",
-    restoreConfirm:"ያለው መረጃ በዚህ ባክአፕ ይተካ?",
-    settings:"መረጃና ባክአፕ",
-    costNote:"ትርፉ በተመዘገቡ የግዢ ዋጋዎች ይገመታል።",
-    supplierList:"አቅራቢዎች",addSupplier:"አቅራቢ ጨምር",
-    employeeNote:"የሰራተኛ መለያና የክላውድ ማመሳሰል ገና አልተሠሩም።",
-    deleteBatch:"ባች ሰርዝ"
-  }
-};
-
-let lang = localStorage.getItem("mv_lang") || "en";
-let page = "dashboard";
-let search = "";
-
-const defaults = {
-  batches:[], sales:[], purchases:[], customers:[],
-  suppliers:[], expenses:[]
-};
-let db;
-try {
-  db = JSON.parse(localStorage.getItem("mulervet_db")) || defaults;
-  for (const k in defaults) if (!Array.isArray(db[k])) db[k] = [];
-} catch(e) {
-  db = JSON.parse(JSON.stringify(defaults));
-}
-
-function t(key) {
-  return (translations[lang] || translations.en)[key]
-    || translations.en[key] || key;
-}
-function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",
-    '"':"&quot;","'":"&#39;"
-  }[c]));
-}
-function save() {
-  try {
-    localStorage.setItem("mulervet_db",JSON.stringify(db));
-    render();
-  } catch(e) {
-    alert("Could not save. Export your backup and free device storage.");
-  }
-}
-function id() {
-  return Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-}
-function today() {
-  const d=new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")
-    +"-"+String(d.getDate()).padStart(2,"0");
-}
-function sum(list,fn) {
-  return list.reduce((a,x)=>a+Number(fn(x)||0),0);
-}
-function isExpired(b) {
-  return !!b.expiry && b.expiry < today();
-}
-function daysLeft(b) {
-  if (!b.expiry) return Infinity;
-  return Math.ceil((new Date(b.expiry+"T00:00:00")-
-    new Date(today()+"T00:00:00"))/86400000);
-}
-function isNear(b) {
-  return !isExpired(b) && daysLeft(b)<=90;
-}
-function available(b) {
-  return Math.max(0,Number(b.qty)||0);
-}
-function sellable(b) {
-  return !isExpired(b) && available(b)>0;
-}
-function activeBatches() {
-  return db.batches.filter(sellable)
-    .sort((a,b)=>(a.expiry||"9999").localeCompare(b.expiry||"9999"));
-}
-function stockValue() {
-  return sum(db.batches,b=>b.qty*b.cost);
-}
-function revenue() {
-  return sum(db.sales,s=>s.total);
-}
-function grossProfit() {
-  return sum(db.sales,s=>s.profit);
-}
-function expenseTotal() {
-  return sum(db.expenses,e=>e.amount);
-}
-function netProfit() {
-  return grossProfit()-expenseTotal();
-}
-function todayRevenue() {
-  return sum(db.sales.filter(s=>s.date===today()),s=>s.total);
-}
-function customerName(id) {
-  return db.customers.find(c=>c.id===id)?.name || "Walk-in";
-}
-function batchName(b) {
-  return b.drug+" · "+(b.batch||"No batch")+" · "+(b.expiry||"No expiry");
-}
-function field(label,name,type="text",required=true,value="") {
-  return `<label>${label}<input name="${name}" type="${type}"
-    ${required?"required":""} value="${esc(value)}"></label>`;
-}
-function selectField(label,name,options,required=true) {
-  return `<label>${label}<select name="${name}" ${required?"required":""}>
-    ${options.map(o=>`<option value="${esc(o.value)}">${esc(o.label)}</option>`).join("")}
-    </select></label>`;
-}
-function nav() {
-  const pages=["dashboard","stock","sales","purchases","customers","reports","settings"];
-  $("nav").innerHTML=pages.map(p=>
-    `<button class="${page===p?"active":""}" onclick="go('${p}')">${t(p)}</button>`
-  ).join("");
-}
-function go(p) {
-  page=p;
-  render();
-}
-function metric(label,value) {
-  return `<div class="card"><div class="muted">${label}</div>
-    <div class="metric">${value}</div></div>`;
-}
-function table(headers,rows) {
-  if(!rows.length) return `<p class="muted">${t("noData")}</p>`;
-  return `<div class="tablewrap"><table><thead><tr>${
-    headers.map(h=>`<th>${h}</th>`).join("")
-  }</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
-}
-function dashboard() {
-  const alerts=db.batches.filter(b=>available(b)>0&&(isExpired(b)||isNear(b)));
-  const low=db.batches.filter(b=>available(b)>0&&available(b)<=5&&!isExpired(b));
-  return `<h3>${t("dashboardTitle")}</h3>
-    <div class="grid">
-      ${metric(t("totalStock"),money(stockValue()))}
-      ${metric(t("todaySales"),money(todayRevenue()))}
-      ${metric(t("batches"),db.batches.length)}
-      ${metric(t("profit"),money(grossProfit()))}
-    </div>
-    <div class="card"><h3>${t("stockWarning")}</h3>
-      ${alerts.length?alerts.map(b=>`<div class="alert">
-        <strong>${esc(b.drug)}</strong> — ${esc(b.batch||"-")}
-        <br>${isExpired(b)?`<span class="bad">${t("expired")}</span>`:
-        `<span style="color:#a65d00">${t("near")}: ${daysLeft(b)} days</span>`}
-        <br>${esc(b.expiry||"-")} · ${t("quantity")}: ${available(b)}
-      </div>`).join(""):t("noData")}
-      ${low.length?`<h4>${t("low")}</h4>`+low.map(b=>`<p>${esc(b.drug)}: ${available(b)}</p>`).join(""):""}
-    </div>
-    <div class="card"><h3>${t("employeeNote")}</h3>
-      <p class="muted">${t("costNote")}</p>
-    </div>`;
-}
-function stock() {
-  const list=db.batches.filter(b=>
-    (b.drug+" "+b.type+" "+b.batch+" "+b.supplier)
-      .toLowerCase().includes(search.toLowerCase()));
-  return `<h3>${t("stock")}</h3>
-    <div class="card"><h3>${t("addDrug")}</h3>
-      <form id="stockForm">
-        ${field(t("drug"),"drug")}
-        ${selectField(t("type"),"type",[
-          {value:"Medicine",label:t("medicine")},
-          {value:"Injection",label:t("injection")},
-          {value:"Tablet",label:t("tablet")},
-          {value:"Powder",label:t("powder")},
-          {value:"Liquid",label:t("liquid")},
-          {value:"Vaccine",label:t("vaccine")},
-          {value:"Antibiotic",label:t("antibiotic")},
-          {value:"Feed supplement",label:t("feed")},
-          {value:"Other",label:t("other")}
-        ])}
-        ${field(t("batch"),"batch")}
-        <div class="row">
-          ${field(t("expiryDate"),"expiry","date")}
-          ${field(t("quantity"),"qty","number")}
-        </div>
-        <div class="row">
-          ${field(t("cost"),"cost","number")}
-          ${field(t("price"),"price","number")}
-        </div>
-        ${field(t("supplier"),"supplier", "text",false)}
-        <button class="primary">${t("save")}</button>
-      </form>
-    </div>
-    <div class="card">
-      <input placeholder="${t("search")}" value="${esc(search)}"
-        oninput="search=this.value;render()">
-      <h3>${t("inventory")}</h3>
-      ${table([t("drug"),t("batch"),t("expiryDate"),t("quantity"),
-        t("cost"),t("price"),"Status",t("delete")],
-        list.map(b=>[
-          esc(b.drug)+"<br><span class='muted'>"+esc(b.type)+"</span>",
-          esc(b.batch||"-"),esc(b.expiry||"-"),available(b),
-          money(b.cost),money(b.price),
-          isExpired(b)?`<span class="bad">${t("expired")}</span>`:
-          isNear(b)?t("near"):t("ok"),
-          `<button class="danger" onclick="deleteBatch('${b.id}')">${t("delete")}</button>`
-        ]))}
-    </div>`;
-}
-function sales() {
-  const batches=activeBatches();
-  return `<h3>${t("sales")}</h3>
-    <div class="card"><h3>${t("sell")}</h3>
-      ${batches.length?`<form id="saleForm">
-        ${selectField(t("product"),"batchId",batches.map(b=>({
-          value:b.id,label:batchName(b)+" ("+available(b)+")"
-        })))}
-        ${selectField(t("customer"),"customerId",[
-          {value:"",label:"Walk-in"}
-        ].concat(db.customers.map(c=>({value:c.id,label:c.name})),[] ,true)}
-        ${field(t("amount"),"qty","number")}
-        ${field(t("payment"),"paid","number",true,"0")}
-        ${selectField(t("payment"),"method",[
-          {value:"Cash",label:t("cash")},
-          {value:"Credit",label:t("credit")}
-        ])}
-        <button class="primary">${t("sell")}</button>
-      </form>`:`<p>${t("noStock")}</p>`}
-    </div>
-    <div class="card"><h3>${t("sold")}</h3>
-      ${table([t("date"),t("drug"),t("customer"),t("amount"),
-        t("total"),t("payment")],db.sales.slice().reverse().map(s=>[
-        esc(s.date),esc(s.drug),esc(customerName(s.customerId)),
-        s.qty,money(s.total),money(s.paid)
-      ]))}
-    </div>`;
-}
-function purchases() {
-  return `<h3>${t("purchases")}</h3>
-    <div class="card">
-      <p>To receive stock, use <strong>${t("stock")}</strong> and enter the
-      new batch, quantity, supplier, expiry date and unit cost. This records
-      the inventory batch and purchase cost.</p>
-      <h3>${t("supplierList")}</h3>
-      <form id="supplierForm">
-        ${field(t("supplierName"),"name")}
-        ${field(t("phone"),"phone","tel",false)}
-        <button class="primary">${t("addSupplier")}</button>
-      </form>
-      ${table([t("supplierName"),t("phone"),t("delete")],
-        db.suppliers.map(s=>[esc(s.name),esc(s.phone||"-"),
-          `<button class="danger" onclick="removeItem('suppliers','${s.id}')">${t("delete")}</button>`]))}
-    </div>
-    <div class="card"><h3>${t("expense")}</h3>
-      <form id="expenseForm">
-        ${field(t("description"),"description")}
-        ${field(t("amount"),"amount","number")}
-        ${field(t("date"),"date","date",true,today())}
-        <button class="primary">${t("addExpense")}</button>
-      </form>
-      ${table([t("date"),t("description"),t("amount"),t("delete")],
-        db.expenses.map(e=>[esc(e.date),esc(e.description),money(e.amount),
-          `<button class="danger" onclick="removeItem('expenses','${e.id}')">${t("delete")}</button>`]))}
-    </div>`;
-}
-function customers() {
-  return `<h3>${t("customers")}</h3>
-    <div class="card"><h3>${t("addCustomer")}</h3>
-      <form id="customerForm">
-        ${field(t("name"),"name")}
-        ${field(t("phone"),"phone","tel",false)}
-        ${field(t("address"),"address","text",false)}
-        <button class="primary">${t("save")}</button>
-      </form>
-    </div>
-    <div class="card">${table([t("name"),t("phone"),t("address"),
-      t("balance"),t("delete")],db.customers.map(c=>{
-        const debt=sum(db.sales.filter(s=>s.customerId===c.id),s=>s.total-s.paid);
-        return [esc(c.name),esc(c.phone||"-"),esc(c.address||"-"),
-          money(debt),`<button class="danger" onclick="removeItem('customers','${c.id}')">${t("delete")}</button>`];
-      }))}</div>`;
-}
-function reports() {
-  return `<h3>${t("reports")}</h3>
-    <div class="grid">
-      ${metric(t("revenue"),money(revenue()))}
-      ${metric(t("totalPurchases"),money(sum(db.batches,b=>b.qty*b.cost)))}
-      ${metric(t("expensesTotal"),money(expenseTotal()))}
-      ${metric(t("net"),money(netProfit()))}
-    </div>
-    <div class="card"><p class="muted">${t("costNote")}</p>
-      <h3>${t("sold")}</h3>
-      ${table([t("date"),t("drug"),t("amount"),t("total"),"Gross profit"],
-        db.sales.map(s=>[esc(s.date),esc(s.drug),s.qty,money(s.total),money(s.profit)]))}
-    </div>`;
-}
-function settings() {
-  return `<h3>${t("settings")}</h3>
-    <div class="card">
-      <h3>${t("export")}</h3>
-      <p class="muted">Download all saved data as a JSON file. Keep the file private.</p>
-      <button class="primary" onclick="exportData()">${t("export")}</button>
-    </div>
-    <div class="card">
-      <h3>${t("restore")}</h3>
-      <p class="muted">${t("restoreHelp")}</p>
-      <input id="backupFile" type="file" accept=".json,application/json">
-      <button class="primary" onclick="importData()">${t("restore")}</button>
-    </div>
-    <div class="card">
-      <h3>About Mulervet</h3>
-      <p>This prototype saves records in this browser on this device.
-      Clearing browser data may delete your records. It does not provide
-      cloud synchronization or employee logins.</p>
-      <p>Do not sell expired, recalled, or otherwise restricted products.
-      Verify veterinary medicine licensing and handling requirements
-      applicable to your business.</p>
-    </div>`;
-}
-function render() {
-  nav();
-  const pages={
-    dashboard,stock,sales,purchases,customers,reports,settings
-  };
-  $("app").innerHTML=pages[page]();
-  $("subtitle").textContent=lang==="am"
-    ?"የእንስሳት መድኃኒት ጅምላ ንግድ አስተዳደር"
-    :"Veterinary Wholesale Manager";
-  $("langBtn").textContent=lang==="en"?"አማርኛ":"English";
-  bindForms();
-}
-function bindForms() {
-  const sf=$("stockForm");
-  if(sf) sf.onsubmit=e=>{
-    e.preventDefault();
-    const f=new FormData(sf);
-    const qty=Number(f.get("qty")),cost=Number(f.get("cost")),
-      price=Number(f.get("price"));
-    if(qty<=0||cost<0||price<0) return alert(t("badQty"));
-    db.batches.push({
-      id:id(),drug:f.get("drug").trim(),type:f.get("type"),
-      batch:f.get("batch").trim(),expiry:f.get("expiry"),
-      qty,cost,price,supplier:f.get("supplier").trim(),
-      added:today()
-    });
-    save();alert(t("saved"));
-  };
-  const sale=$("saleForm");
-  if(sale) sale.onsubmit=e=>{
-    e.preventDefault();
-    const f=new FormData(sale),b=db.batches.find(x=>x.id===f.get("batchId"));
-    const qty=Number(f.get("qty")),paid=Number(f.get("paid"));
-    if(!b||isExpired(b)) return alert(t("expiredBlock"));
-    if(qty<=0||qty>available(b)||paid<0) return alert(t("badQty"));
-    const total=qty*Number(b.price);
-    if(paid>total) return alert("Payment cannot exceed invoice total.");
-    b.qty-=qty;
-    db.sales.push({
-      id:id(),date:today(),batchId:b.id,drug:b.drug,qty,
-      total,paid,method:f.get("method"),
-      customerId:f.get("customerId")||"",
-      profit:qty*(Number(b.price)-Number(b.cost))
-    });
-    save();alert(t("saved"));
-  };
-  const cf=$("customerForm");
-  if(cf) cf.onsubmit=e=>{
-    e.preventDefault();const f=new FormData(cf);
-    db.customers.push({id:id(),name:f.get("name").trim(),
-      phone:f.get("phone"),address:f.get("address")});
-    save();alert(t("saved"));
-  };
-  const pf=$("supplierForm");
-  if(pf) pf.onsubmit=e=>{
-    e.preventDefault();const f=new FormData(pf);
-    db.suppliers.push({id:id(),name:f.get("name").trim(),phone:f.get("phone")});
-    save();alert(t("saved"));
-  };
-  const ef=$("expenseForm");
-  if(ef) ef.onsubmit=e=>{
-    e.preventDefault();const f=new FormData(ef),amount=Number(f.get("amount"));
-    if(amount<=0) return alert(t("badQty"));
-    db.expenses.push({id:id(),description:f.get("description"),
-      amount,date:f.get("date")});
-    save();alert(t("saved"));
-  };
-}
-function deleteBatch(id) {
-  const b=db.batches.find(x=>x.id===id);
-  if(!b||!confirm(t("confirmDelete"))) return;
-  if(db.sales.some(s=>s.batchId===id)) {
-    return alert("This batch has sales history. Do not delete it; use an adjustment workflow instead.");
-  }
-  db.batches=db.batches.filter(x=>x.id!==id);
-  save();
-}
-function removeItem(collection,id) {
-  if(!confirm(t("confirmDelete"))) return;
-  db[collection]=db[collection].filter(x=>x.id!==id);
-  save();
-}
-function toggleLanguage() {
-  lang=lang==="en"?"am":"en";
-  localStorage.setItem("mv_lang",lang);
-  render();
-}
-function exportData() {
-  const blob=new Blob([JSON.stringify({
-    version:1,exported:new Date().toISOString(),db
-  },null,2)],{type:"application/json"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="mulervet-backup-"+today()+".json";
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-}
-function importData() {
-  const file=$("backupFile").files[0];
-  if(!file) return alert("Choose a JSON backup file first.");
-  if(!confirm(t("restoreConfirm"))) return;
-  const reader=new FileReader();
-  reader.onload=()=>{
+  const getData = (key, fallback) => {
     try {
-      const obj=JSON.parse(reader.result);
-      const incoming=obj.db||obj;
-      for(const k in defaults) {
-        if(!Array.isArray(incoming[k])) throw Error("Invalid backup");
-      }
-      db=incoming;
-      save();
-      alert(t("saved"));
-    } catch(e) {
-      alert("Invalid backup file. Your existing data was not replaced.");
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : fallback;
+    } catch {
+      return fallback;
     }
   };
-  reader.readAsText(file);
-}
-render();
+
+  let products = getData("mulervet_products", []);
+  let orders = getData("mulervet_orders", []);
+  let business = getData("mulervet_business", {});
+
+  function saveData() {
+    localStorage.setItem("mulervet_products", JSON.stringify(products));
+    localStorage.setItem("mulervet_orders", JSON.stringify(orders));
+    localStorage.setItem("mulervet_business", JSON.stringify(business));
+    updateDashboard();
+  }
+
+  function showPage(page, button) {
+    document.querySelectorAll("main section").forEach(section => {
+      section.classList.add("hidden");
+    });
+    document.getElementById(page).classList.remove("hidden");
+
+    document.querySelectorAll("nav button").forEach(btn => {
+      btn.classList.remove("active");
+    });
+    if (button) button.classList.add("active");
+
+    renderProducts();
+    renderOrders();
+    updateProductOptions();
+  }
+
+  function updateDashboard() {
+    document.getElementById("totalProducts").textContent = products.length;
+    document.getElementById("totalStock").textContent =
+      products.reduce((sum, product) => sum + Number(product.quantity), 0);
+    document.getElementById("totalOrders").textContent = orders.length;
+    document.getElementById("lowStock").textContent =
+      products.filter(product => Number(product.quantity) <= 5).length;
+  }
+
+  document.getElementById("productForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    products.push({
+      id: Date.now(),
+      name: document.getElementById("productName").value.trim(),
+      category: document.getElementById("category").value,
+      unit: document.getElementById("unit").value.trim(),
+      quantity: Number(document.getElementById("quantity").value),
+      price: Number(document.getElementById("price").value),
+      expiry: document.getElementById("expiry").value
+    });
+
+    saveData();
+    event.target.reset();
+    renderProducts();
+    updateProductOptions();
+    alert("Product saved successfully.");
+  });
+
+  function renderProducts() {
+    const list = document.getElementById("productList");
+    if (!list) return;
+
+    const query = (document.getElementById("search")?.value || "").toLowerCase();
+    const filtered = products.filter(product =>
+      product.name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query)
+    );
+
+    list.innerHTML = "";
+
+    if (!filtered.length) {
+      list.textContent = "No products found. Add your first product above.";
+      return;
+    }
+
+    filtered.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product";
+
+      const heading = document.createElement("h3");
+      heading.textContent = product.name;
+
+      const details = document.createElement("p");
+      details.textContent = product.category + " · " + product.unit;
+
+      const stock = document.createElement("p");
+      stock.textContent = "Stock: " + product.quantity +
+        " · Price: " + Number(product.price).toLocaleString() + " ETB";
+
+      const expiry = document.createElement("p");
+      expiry.className = "muted";
+      expiry.textContent = product.expiry
+        ? "Expiry date: " + product.expiry
+        : "No expiry date entered";
+
+      const remove = document.createElement("button");
+      remove.className = "btn danger";
+      remove.textContent = "Delete";
+      remove.onclick = () => {
+        if (confirm("Delete " + product.name + "?")) {
+          products = products.filter(item => item.id !== product.id);
+          saveData();
+          renderProducts();
+          updateProductOptions();
+        }
+      };
+
+      card.append(heading, details, stock, expiry, remove);
+      list.appendChild(card);
+    });
+  }
+
+  function updateProductOptions() {
+    const select = document.getElementById("orderProduct");
+    if (!select) return;
+
+    select.innerHTML = "";
+    products.forEach(product => {
+      const option = document.createElement("option");
+      option.value = product.id;
+      option.textContent = product.name + " — " + product.quantity + " in stock";
+      select.appendChild(option);
+    });
+  }
+
+  document.getElementById("orderForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const product = products.find(item =>
+      item.id === Number(document.getElementById("orderProduct").value)
+    );
+    const quantity = Number(document.getElementById("orderQuantity").value);
+
+    if (!product) {
+      alert("Please add a product to inventory first.");
+      return;
+    }
+
+    if (quantity < 1 || quantity > product.quantity) {
+      alert("Order quantity exceeds available stock.");
+      return;
+    }
+
+    orders.push({
+      id: Date.now(),
+      customer: document.getElementById("customer").value.trim(),
+      contact: document.getElementById("contact").value.trim(),
+      product: product.name,
+      quantity: quantity,
+      total: quantity * product.price,
+      note: document.getElementById("orderNote").value.trim(),
+      status: "Pending",
+      date: new Date().toLocaleDateString()
+    });
+
+    product.quantity -= quantity;
+    saveData();
+    event.target.reset();
+    renderOrders();
+    renderProducts();
+    updateProductOptions();
+    alert("Order saved successfully.");
+  });
+
+  function renderOrders() {
+    const list = document.getElementById("orderList");
+    if (!list) return;
+
+    list.innerHTML = "";
+    if (!orders.length) {
+      list.textContent = "No orders yet.";
+      return;
+    }
+
+    [...orders].reverse().forEach(order => {
+      const card = document.createElement("div");
+      card.className = "product";
+
+      const title = document.createElement("h3");
+      title.textContent = order.customer;
+
+      const details = document.createElement("p");
+      details.textContent = order.product + " × " + order.quantity;
+
+      const total = document.createElement("p");
+      total.textContent = "Total: " + order.total.toLocaleString() + " ETB";
+
+      const contact = document.createElement("p");
+      contact.textContent = "Phone: " + order.contact;
+
+      const status = document.createElement("p");
+      status.textContent = "Status: " + order.status + " · " + order.date;
+
+      const remove = document.createElement("button");
+      remove.className = "btn danger";
+      remove.textContent = "Delete Order";
+      remove.onclick = () => {
+        if (confirm("Delete this order? Stock will not be restored automatically.")) {
+          orders = orders.filter(item => item.id !== order.id);
+          saveData();
+          renderOrders();
+        }
+      };
+
+      card.append(title, details, total, contact, status);
+      if (order.note) {
+        const note = document.createElement("p");
+        note.textContent = "Notes: " + order.note;
+        card.appendChild(note);
+      }
+      card.appendChild(remove);
+      list.appendChild(card);
+    });
+  }
+
+  document.getElementById("businessForm").addEventListener("submit", event => {
+    event.preventDefault();
+    business = {
+      name: document.getElementById("businessName").value.trim(),
+      phone: document.getElementById("businessPhone").value.trim(),
+      address: document.getElementById("businessAddress").value.trim(),
+      email: document.getElementById("businessEmail").value.trim()
+    };
+    localStorage.setItem("mulervet_business", JSON.stringify(business));
+    alert("Business details saved on this device.");
+  });
+
+  function loadBusiness() {
+    document.getElementById("businessName").value = business.name || "Mulervet";
+    document.getElementById("businessPhone").value = business.phone || "";
+    document.getElementById("businessAddress").value = business.address || "";
+    document.getElementById("businessEmail").value = business.email || "";
+  }
+
+  loadBusiness();
+  updateDashboard();
+  renderProducts();
+  renderOrders();
+  updateProductOptions();
 </script>
+
 </body>
 </html>
