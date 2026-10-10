@@ -1,0 +1,36 @@
+
+name: Mulervet Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-project:
+    name: Check Mulervet Project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify project files
+        run: |
+          echo "Checking Mulervet project files..."
+
+          if [ -f index.html ]; then
+            echo "SUCCESS: index.html found."
+          else
+            echo "ERROR: index.html not found."
+            exit 1
+          fi
+
+          echo "Mulervet project check completed."
